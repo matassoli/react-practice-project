@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import ErrorModal from "./components/UI/ErrorModal";
 import AddUser from "./components/Users/AddUser";
 import UserList from "./components/Users/UserLIst";
 
@@ -20,7 +19,6 @@ function App() {
     <div>
       <AddUser onAddUser={addUserHandler} />
       <UserList users={usersList} />
-      <ErrorModal title="C'è un errore dp" message="Qualcosa è andato stò" />
     </div>
   );
 }
