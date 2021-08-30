@@ -12,6 +12,4 @@ const Button = (props) => {
   );
 };
 
-// {`${classes.button} ${props.className}`}
-
 export default Button;
