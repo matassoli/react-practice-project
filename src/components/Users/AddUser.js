@@ -6,49 +6,49 @@ import Button from "../UI/Button";
 import classes from "./AddUser.module.css";
 
 const AddUser = (props) => {
-  const [enteredName, setEnteredName] = useState("");
+  const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
 
   const addUserHandler = (event) => {
     event.preventDefault();
 
-    if (enteredName.trim().lenght === 0 || enteredAge.length === 0) {
+    if (enteredUsername.trim().length === 0 || enteredAge.length === 0) {
       return;
     }
 
-    if (enteredAge < 1 || enteredAge.toString().length > 2) {
+    if (+enteredAge < 1 || enteredAge.toString().length > 2) {
       return;
     }
-    console.log(enteredName, enteredAge);
-    setEnteredName("");
-    setEnteredAge("");
+    props.onAddUser(enteredUsername, enteredAge);
+    setEnteredUsername('');
+    setEnteredAge('');
   };
 
-  const nameChangerHandler = (event) => {
-    setEnteredName(event.target.value);
+  const usernameChangeHandler = (event) => {
+    setEnteredUsername(event.target.value);
   };
-  const ageChangerHandler = (event) => {
-    setEnteredAge(+event.target.value);
+  const ageChangeHandler = (event) => {
+    setEnteredAge(event.target.value);
   };
 
   return (
     <Card className={classes.input}>
       <form onSubmit={addUserHandler}>
-        <label htmlFor="name">Nome</label>
+        <label htmlFor="username">Nome</label>
         <input
+          id="username"
           type="text"
-          id="name"
-          value={enteredName}
-          onChange={nameChangerHandler}
+          value={enteredUsername}
+          onChange={usernameChangeHandler}
         />
         <label htmlFor="age">Età</label>
         <input
-          type="number"
           id="age"
+          type="number"
           value={enteredAge}
-          onChange={ageChangerHandler}
+          onChange={ageChangeHandler}
         />
-        <Button type="submit">Aggiungi</Button>
+        <Button type="submit">Add User</Button>
       </form>
     </Card>
   );
